@@ -1,0 +1,55 @@
+﻿@model List<Producto>
+
+@{
+    ViewData["Title"] = "Lista de Productos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<button type="button" onclick="location.href='@Url.Action("Create", "Producto")'"
+        class="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+    Nuevo Producto <i class="fa-solid fa-cart-plus"></i>
+</button>
+<p>En esta pagina se muestran productos</p>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+            <th scope="col" class="px-6 py-3">IdProducto</th>
+            <th scope="col" class="px-6 py-3">Nombre</th>
+            <th scope="col" class="px-6 py-3">Descripcion</th>
+            <th scope="col" class="px-6 py-3">Cantidad</th>
+            <th scope="col" class="px-6 py-3">Acciones</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        @foreach (var producto in Model)
+        {
+            <tr class="bg-white border-b">
+                <td class="px-6 py-4">@producto.IdProducto</td>
+                <td class="px-6 py-4">@producto.Nombre</td>
+                <td class="px-6 py-4">@producto.Descripcion</td>
+                <td class="px-6 py-4">@producto.Cantidad</td>
+                <td class="px-6 py-4 space-x-4">
+                    <a asp-action="Details" asp-route-id="@producto.IdProducto"
+                       class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700
+                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                        <i class="fa-solid fa-eye"></i> Ver
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@producto.IdProducto"
+                       class="rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-500
+                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600">
+                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@producto.IdProducto"
+                       class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500
+                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
+                        <i class="fa-solid fa-trash"></i> Borrar
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table></div>
