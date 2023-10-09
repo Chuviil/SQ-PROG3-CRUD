@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "css": "tailwindcss -i ./Views/Shared/main.css -o ./wwwroot/css/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
