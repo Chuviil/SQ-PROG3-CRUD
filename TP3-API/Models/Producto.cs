@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TP2_CRUD.Models;
+namespace TP3_API.Models;
 
 public class Producto
 {
+    [Key]
     public int IdProducto { get; set; }
     [Required]
     public string? Nombre { get; set; }
