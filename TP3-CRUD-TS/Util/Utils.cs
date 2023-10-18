@@ -1,6 +1,6 @@
-﻿using TP2_CRUD.Models;
+﻿using TP3_CRUD_TS.Models;
 
-namespace TP2_CRUD.Util;
+namespace TP3_CRUD_TS.Util;
 
 public class Utils
 {

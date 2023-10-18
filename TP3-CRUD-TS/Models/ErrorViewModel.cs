@@ -1,4 +1,4 @@
-namespace TP2_CRUD.Models;
+namespace TP3_CRUD_TS.Models;
 
 public class ErrorViewModel
 {
