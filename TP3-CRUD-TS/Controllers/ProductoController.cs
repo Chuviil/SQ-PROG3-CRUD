@@ -1,24 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TP3_CRUD_TS.Models;
+using TP3_CRUD_TS.Services;
 
 namespace TP3_CRUD_TS.Controllers;
 
 public class ProductoController : Controller
 {
-    private readonly string _apiBaseUrl = "http://localhost:5285";
-    private readonly HttpClient _httpClient;
-
-    public ProductoController()
+    private readonly IApiService _apiService;
+    
+    public ProductoController(IApiService apiService)
     {
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri(_apiBaseUrl)
-        };
+        _apiService = apiService;
     }
 
     public async Task<IActionResult> Index()
     {
-        var productos = await _httpClient.GetFromJsonAsync<List<Producto>>("api/Producto");
+        var productos = await _apiService.GetProductos();
 
         return View(productos);
     }
@@ -31,20 +28,20 @@ public class ProductoController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Producto producto)
     {
-        await _httpClient.PostAsJsonAsync("api/Producto", producto);
+        await _apiService.PostProducto(producto);
         return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Details(int id)
     {
-        var producto = await _httpClient.GetFromJsonAsync<Producto>($"api/Producto/{id}");
+        var producto = await _apiService.GetProducto(id);
         if (producto != null) return View(producto);
         return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Edit(int id)
     {
-        var producto = await _httpClient.GetFromJsonAsync<Producto>($"api/Producto/{id}");
+        var producto = await _apiService.GetProducto(id);
         if (producto != null) return View(producto);
         return RedirectToAction("Index");
     }
@@ -52,14 +49,14 @@ public class ProductoController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(Producto producto)
     {
-        await _httpClient.PutAsJsonAsync($"api/Producto/{producto.IdProducto}", producto);
+        await _apiService.PutProducto(producto.IdProducto, producto);
 
         return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Delete(int id)
     {
-        await _httpClient.DeleteAsync($"api/Producto/{id}");
+        await _apiService.DeleteProducto(id);
 
         return RedirectToAction("Index");
     }

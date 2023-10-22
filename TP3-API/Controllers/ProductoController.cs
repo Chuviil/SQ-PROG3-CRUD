@@ -5,6 +5,7 @@ using TP3_API.Models;
 
 namespace TP3_API.Controllers;
 
+/* /api/Producto */
 [Route("api/[controller]")]
 [ApiController]
 public class ProductoController : ControllerBase
