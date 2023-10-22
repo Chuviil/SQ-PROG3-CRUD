@@ -14,9 +14,9 @@ public class ApplicationDBContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Producto>().HasData(
-            new Producto() { IdProducto = 1, Nombre = "Producto 1", Descripcion = "Descripcion 1", Cantidad = 10},
-            new Producto() { IdProducto = 2, Nombre = "Producto 2", Descripcion = "Descripcion 2", Cantidad = 40},
-            new Producto() { IdProducto = 3, Nombre = "Producto 3", Descripcion = "Descripcion 3", Cantidad = 23}
+            new Producto { IdProducto = 1, Nombre = "Producto 1", Descripcion = "Descripcion 1", Cantidad = 10 },
+            new Producto { IdProducto = 2, Nombre = "Producto 2", Descripcion = "Descripcion 2", Cantidad = 40 },
+            new Producto { IdProducto = 3, Nombre = "Producto 3", Descripcion = "Descripcion 3", Cantidad = 23 }
         );
     }
 }
